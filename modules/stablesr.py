@@ -257,7 +257,7 @@ class StableSRScript():
         unet: UNetModel = sd_model.model.diffusion_model
 
         # hook unet forwards
-        # self.stablesr_module.hook(unet)
+        self.stablesr_module.hook(unet)
 
         # get an empty latent for ksampler, it will generate a random tensor from the seed
         empty_latent = {"samples": torch.zeros(self.init_latent["samples"].shape)}
