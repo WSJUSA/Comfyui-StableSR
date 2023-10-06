@@ -6,7 +6,11 @@ import torch
 
 import folder_paths
 model_path = folder_paths.models_dir
-folder_paths.folder_names_and_paths["stablesr"] = ([os.path.join(model_path, "stablesr")], folder_paths.supported_pt_extensions)
+folder_name = "stablesr"
+folder_path = os.path.join(model_path, "stablesr")  #set a default path for the common comfyui model path
+if folder_name in folder_paths.folder_names_and_paths:
+    folder_path = folder_paths.folder_names_and_paths[folder_name][0][0]  #if a custom path was set in extra_model_paths.yaml then use it
+folder_paths.folder_names_and_paths["stablesr"] = ([folder_path], folder_paths.supported_pt_extensions)
 
 import stablesr
 from colorfix import adain_color_fix, wavelet_color_fix
